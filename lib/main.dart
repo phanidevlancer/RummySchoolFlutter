@@ -9,13 +9,7 @@ import 'components/footer/Footer.dart';
 import 'components/utils/HexColor.dart';
 
 void main() {
-
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
-
-  SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]).then((_){
-    runApp(MyApp());
-  });
+  runApp(MyApp());
 }
 
 
@@ -28,6 +22,8 @@ class MyApp extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky, overlays: []);
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
