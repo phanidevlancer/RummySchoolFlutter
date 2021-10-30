@@ -1,25 +1,56 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import '../utils//CustomDialog.dart';
 
-class Footer extends StatelessWidget {
+class Footer extends StatefulWidget {
   final Function() sortBtnClickListener;
 
   const Footer({Key? key, required this.sortBtnClickListener})
       : super(key: key);
 
   @override
+  State<Footer> createState() => _FooterState();
+}
+
+class _FooterState extends State<Footer> {
+  var widgetKey = GlobalKey();
+  var oldSize;
+  double _footerWidth = 0;
+  double _footerHeight = 0;
+
+  void postFrameCallback(_) {
+    var context = widgetKey.currentContext;
+    if (context == null) return;
+
+    var newSize = context.size;
+    if (oldSize == newSize) return;
+    if(newSize!.height != _footerHeight){
+      setState(() {
+        print('setState ${newSize!.width}');
+        _footerHeight = newSize!.height;
+      });
+    }
+
+    // build(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
-    final double fontW = width * 0.02;
+    _footerWidth = _footerHeight * 1.6;
+    final double fontW = _footerWidth * 0.1;
+    final double topPos = (height * 0.12) / 3;
+    final double leftPos = (_footerWidth / 2.2);
+    print('footer height : ${_footerHeight}');
+    print('footer width : ${_footerWidth}');
 
-    final double topPos = (height * 0.12)/3 ;
-    final double leftPos = (width * 0.08);
-    print('fontSize : ${topPos}');
+    SchedulerBinding.instance?.addPostFrameCallback(postFrameCallback);
 
     return Container(
+      key: widgetKey,
       color: Colors.black87.withAlpha(180),
       child: Row(
         children: <Widget>[
@@ -34,7 +65,11 @@ class Footer extends StatelessWidget {
             flex: 2,
             child: Container(
               child: Stack(children: <Widget>[
-                Image.asset('images/male_active_glow_themered.png'),
+                Image.asset(
+                  'images/male_active_glow_themered.png',
+                  height: _footerHeight,
+                  width: _footerWidth,
+                ),
                 Positioned(
                   child: Text(
                     "Phanindra",
@@ -75,7 +110,7 @@ class Footer extends StatelessWidget {
                     color: Colors.blue,
                     child: const Text('Sort',
                         style: TextStyle(fontSize: 16.0, color: Colors.white)),
-                    onPressed: sortBtnClickListener,
+                    onPressed: widget.sortBtnClickListener,
                   ),
                   const SizedBox(
                     width: 10,
