@@ -1,5 +1,4 @@
-
-// ignore_for_file: file_names, duplicate_ignore, avoid_print
+// ignore_for_file: file_names, duplicate_ignore, avoid_print, non_constant_identifier_names, empty_catches
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,7 +18,7 @@ class CardLayoutState extends State<CardLayout> {
   double cardLayoutWidth = double.infinity;
 
   List<PlayCardObj> selectedCards = [];
-  final int MaxGroups = 5;
+  final int MAX_GROUPS = 5;
 
   final List<PlayCardObj> cardsList = [
     PlayCardObj(0, false, "d1", 1),
@@ -181,7 +180,7 @@ class CardLayoutState extends State<CardLayout> {
                     bottomRight: Radius.circular(5),
                   )),
               width:
-              groupInfo.groupEndOffsetPos - groupInfo.groupStartOffsetPos,
+                  groupInfo.groupEndOffsetPos - groupInfo.groupStartOffsetPos,
               height: 15,
               child: Text(
                 "Group ${groupInfo.cards[0].groupIndex}",
@@ -200,8 +199,8 @@ class CardLayoutState extends State<CardLayout> {
     }
     calculateCardLayoutWidth();
     return Stack(
+      clipBehavior: Clip.none,
       children: list,
-      overflow: Overflow.visible,
     );
   }
 
@@ -223,9 +222,7 @@ class CardLayoutState extends State<CardLayout> {
       double cardLayoutW = cardLeftMargin - 25;
       cardLayoutW = cardLayoutW + 62;
       cardLayoutWidth = cardLayoutW;
-    } catch (err) {
-
-    }
+    } catch (err) {}
   }
 
   void onDragEndCallBack(Offset offset, PlayCardObj draggedPlayCardObj) {
@@ -345,7 +342,8 @@ class CardLayoutState extends State<CardLayout> {
   // }
 
   Offset getPositionByKey(GlobalKey globalKey) {
-    final RenderBox renderBoxRed = globalKey.currentContext!.findRenderObject() as RenderBox;
+    final RenderBox renderBoxRed =
+        globalKey.currentContext!.findRenderObject() as RenderBox;
     final offset = renderBoxRed.localToGlobal(Offset.zero);
     return offset;
   }
@@ -423,10 +421,10 @@ class CardLayoutState extends State<CardLayout> {
     print("createGroupWithSelectedCards 1");
     removeCardsFromRespectiveGroups();
     print("createGroupWithSelectedCards 2");
-    if (groupsInfoArray.length == MaxGroups) {
+    if (groupsInfoArray.length == MAX_GROUPS) {
       GroupInfo groupInfoLast = groupsInfoArray.last;
       GroupInfo groupInfoLastButOne =
-      groupsInfoArray[groupsInfoArray.length - 2];
+          groupsInfoArray[groupsInfoArray.length - 2];
       List<PlayCardObj> playCardObj = [];
       playCardObj.addAll(groupInfoLast.cards);
       playCardObj.addAll(groupInfoLastButOne.cards);
@@ -568,4 +566,3 @@ class CardLayoutState extends State<CardLayout> {
     }
   }
 }
-

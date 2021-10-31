@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -16,7 +16,6 @@ class Footer extends StatefulWidget {
 
 class _FooterState extends State<Footer> {
   var widgetKey = GlobalKey();
-  var oldSize;
   double _footerWidth = 0;
   double _footerHeight = 0;
 
@@ -25,7 +24,6 @@ class _FooterState extends State<Footer> {
     if (context == null) return;
 
     var newSize = context.size;
-    if (oldSize == newSize) return;
     if (newSize!.height != _footerHeight) {
       setState(() {
         print('setState ${newSize.width}');
@@ -39,13 +37,10 @@ class _FooterState extends State<Footer> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    final double width = MediaQuery.of(context).size.width;
     _footerWidth = _footerHeight * 1.6;
     final double fontW = _footerWidth * 0.1;
     final double topPos = (height * 0.12) / 3;
     final double leftPos = (_footerWidth / 2.2);
-    print('footer height : ${_footerHeight}');
-    print('footer width : ${_footerWidth}');
 
     SchedulerBinding.instance?.addPostFrameCallback(postFrameCallback);
 
@@ -98,42 +93,40 @@ class _FooterState extends State<Footer> {
           ),
           Expanded(
             flex: 4,
-            child: Container(
-              child: Row(
-                children: <Widget>[
-                  MaterialButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6.0)),
-                    padding: EdgeInsets.zero,
-                    height: 30,
-                    minWidth: 70,
-                    color: Colors.blue,
-                    child: const Text('Sort',
-                        style: TextStyle(fontSize: 16.0, color: Colors.white)),
-                    onPressed: widget.sortBtnClickListener,
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  MaterialButton(
-                    height: 30,
-                    minWidth: 70,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6.0)),
-                    padding: EdgeInsets.zero,
-                    color: Colors.blue,
-                    child: const Text('Submit',
-                        style: TextStyle(fontSize: 16.0, color: Colors.white)),
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) => const CustomDialog(
-                                title: "Success",
-                              ));
-                    },
-                  ),
-                ],
-              ),
+            child: Row(
+              children: <Widget>[
+                MaterialButton(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6.0)),
+                  padding: EdgeInsets.zero,
+                  height: 30,
+                  minWidth: 70,
+                  color: Colors.blue,
+                  child: const Text('Sort',
+                      style: TextStyle(fontSize: 16.0, color: Colors.white)),
+                  onPressed: widget.sortBtnClickListener,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                MaterialButton(
+                  height: 30,
+                  minWidth: 70,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6.0)),
+                  padding: EdgeInsets.zero,
+                  color: Colors.blue,
+                  child: const Text('Submit',
+                      style: TextStyle(fontSize: 16.0, color: Colors.white)),
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) => const CustomDialog(
+                              title: "Success",
+                            ));
+                  },
+                ),
+              ],
             ),
           ),
         ],

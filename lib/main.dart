@@ -12,17 +12,15 @@ void main() {
   runApp(MyApp());
 }
 
-
-class MyApp extends StatelessWidget{
+class MyApp extends StatelessWidget {
   final GlobalKey<CardLayoutState> cardLayoutGlobalKey = GlobalKey();
-
 
   MyApp({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky, overlays: []);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
+        overlays: []);
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -44,80 +42,77 @@ class MyApp extends StatelessWidget{
                 ),
                 Expanded(
                     flex: 75,
-                    child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                              margin: const EdgeInsets.only(bottom: 4),
-                              decoration: const BoxDecoration(
-                                color: Colors
-                                    .yellow, //new Color.fromRGBO(255, 0, 0, 0.0),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(4.0),
-                                ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                            margin: const EdgeInsets.only(bottom: 4),
+                            decoration: const BoxDecoration(
+                              color: Colors
+                                  .yellow, //new Color.fromRGBO(255, 0, 0, 0.0),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(4.0),
                               ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  Row(
-                                    children: <Widget>[
-                                      Container(
-                                        margin:  const EdgeInsets.all(4),
-                                        decoration:  BoxDecoration(
-                                          color: HexColor("#3D0508"), //new Color.fromRGBO(255, 0, 0, 0.0),
-                                          borderRadius:  const BorderRadius.all(
-                                            Radius.circular(3.0),
-                                          ),
-                                        ),
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 5, horizontal: 5),
-                                        child: Column(
-                                          children: const <Widget>[
-                                             Text(
-                                              "Show\nTime",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.bold),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 10, horizontal: 10),
-                                        child: Text(
-                                          "Please arrange your groups and submit.",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              )),
-                          const Align(
-                            child: OpenJokerDeckContainer(),
-                            alignment: Alignment.bottomCenter,
-                          ),
-                          Align(
-                            child: CardLayout(
-                              key: cardLayoutGlobalKey,
                             ),
-                            alignment: Alignment.bottomCenter,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Container(
+                                      margin: const EdgeInsets.all(4),
+                                      decoration: BoxDecoration(
+                                        color: HexColor(
+                                            "#3D0508"), //new Color.fromRGBO(255, 0, 0, 0.0),
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(3.0),
+                                        ),
+                                      ),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 5, horizontal: 5),
+                                      child: Column(
+                                        children: const <Widget>[
+                                          Text(
+                                            "Show\nTime",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 10),
+                                      child: Text(
+                                        "Please arrange your groups and submit.",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            )),
+                        const Align(
+                          child: OpenJokerDeckContainer(),
+                          alignment: Alignment.bottomCenter,
+                        ),
+                        Align(
+                          child: CardLayout(
+                            key: cardLayoutGlobalKey,
                           ),
-                        ],
-                      ),
+                          alignment: Alignment.bottomCenter,
+                        ),
+                      ],
                     )),
                 Expanded(
                   flex: 12,
-                  child: Container(
-                    child: Footer(
-                      sortBtnClickListener: onSortButtonClick,
-                    ),
+                  child: Footer(
+                    sortBtnClickListener: onSortButtonClick,
                   ),
                 ),
               ],
@@ -135,7 +130,4 @@ class MyApp extends StatelessWidget{
     print("onSortButtonClick");
     cardLayoutGlobalKey.currentState?.createGroups();
   }
-
-
-
 }

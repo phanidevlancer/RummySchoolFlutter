@@ -8,7 +8,10 @@ class OpenJokerDeckContainer extends StatelessWidget {
   final String? openCardSource;
 
   const OpenJokerDeckContainer(
-      {Key? key, this.jokerCardSource, this.deckCardSource, this.openCardSource})
+      {Key? key,
+      this.jokerCardSource,
+      this.deckCardSource,
+      this.openCardSource})
       : super(key: key);
 
   @override
@@ -17,11 +20,11 @@ class OpenJokerDeckContainer extends StatelessWidget {
       width: 200,
       margin: const EdgeInsets.only(left: 10),
       child: Stack(
-        overflow: Overflow.visible,
+        clipBehavior: Clip.none,
         children: <Widget>[
-         const Positioned(
+          const Positioned(
             child: RotationTransition(
-              turns:   AlwaysStoppedAnimation(-90 / 360),
+              turns: AlwaysStoppedAnimation(-90 / 360),
               child: PlayCard(
                 imageName: "c9",
               ),
@@ -45,7 +48,7 @@ class OpenJokerDeckContainer extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const <Widget>[
-                   SizedBox(
+                  SizedBox(
                     height: 18,
                   ),
                   Text(

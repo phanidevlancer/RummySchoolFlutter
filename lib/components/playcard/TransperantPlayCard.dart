@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class TransperantPlayCard extends StatelessWidget {
   final String imageSource;
 
-  const TransperantPlayCard({required this.imageSource,GlobalKey? key})
+  const TransperantPlayCard({required this.imageSource, GlobalKey? key})
       : super(key: key);
 
   @override
@@ -27,7 +27,7 @@ class TransperantPlayCard extends StatelessWidget {
         color: Colors.transparent,
         onPressed: () {},
         child: Image(
-          image: AssetImage('images/${imageSource}.png'),
+          image: AssetImage('images/$imageSource.png'),
           height: 80,
         ),
       ),
