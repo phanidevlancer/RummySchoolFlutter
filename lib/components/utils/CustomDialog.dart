@@ -3,9 +3,7 @@
 import 'package:flutter/material.dart';
 import 'HexColor.dart';
 
-
 class CustomDialog extends StatelessWidget {
-
   final String title;
 
   const CustomDialog({Key? key, required this.title}) : super(key: key);
@@ -18,7 +16,7 @@ class CustomDialog extends StatelessWidget {
       ),
       elevation: 0.0,
       backgroundColor: HexColor("#202123"),
-      child: Container(
+      child: SizedBox(
         height: 200,
         width: 500,
         child: Column(
@@ -26,9 +24,9 @@ class CustomDialog extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                   color: HexColor("#41484F"),
-                  borderRadius:  const BorderRadius.only(
-                    topLeft:  Radius.circular(10.0),
-                    topRight:  Radius.circular(10.0),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(10.0),
+                    topRight: Radius.circular(10.0),
                   )),
               padding: const EdgeInsets.all(10),
               child: Row(
@@ -73,8 +71,7 @@ class CustomDialog extends StatelessWidget {
                   minWidth: 90,
                   color: HexColor("#51A1C5"),
                   child: const Text('Stay',
-                      style:
-                      TextStyle(fontSize: 16.0, color: Colors.white)),
+                      style: TextStyle(fontSize: 16.0, color: Colors.white)),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -90,8 +87,7 @@ class CustomDialog extends StatelessWidget {
                   minWidth: 90,
                   color: HexColor("#616161"),
                   child: const Text('Leave',
-                      style:
-                       TextStyle(fontSize: 16.0, color: Colors.white)),
+                      style: TextStyle(fontSize: 16.0, color: Colors.white)),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },

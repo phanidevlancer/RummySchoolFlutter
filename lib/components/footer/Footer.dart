@@ -26,10 +26,10 @@ class _FooterState extends State<Footer> {
 
     var newSize = context.size;
     if (oldSize == newSize) return;
-    if(newSize!.height != _footerHeight){
+    if (newSize!.height != _footerHeight) {
       setState(() {
-        print('setState ${newSize!.width}');
-        _footerHeight = newSize!.height;
+        print('setState ${newSize.width}');
+        _footerHeight = newSize.height;
       });
     }
 
